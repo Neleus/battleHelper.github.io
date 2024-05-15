@@ -7,13 +7,12 @@
 // @include        /^https{0,1}:\/\/((www|qrator|my)\.(heroeswm|lordswm)\.(ru|com)|178\.248\.235\.15)\/(war|warlog|leader_guild|leader_army|inventory).php(?!.?setkamarmy)/
 // @grant          GM_xmlhttpRequest
 // @license        GNU GPLv3
-// @downloadURL none
 // ==/UserScript==
-
+ 
 (function() {
     var dailyURL = "https://daily." + location.host.substring(location.host.indexOf(".") + 1) + "/";
     let e = document.createElement('script');
-    e.src = dailyURL + "i/js/dailyJS3.js?v=" + Date.now();
+    e.src = dailyURL + "i/js/dailyJS.js?v=" + Date.now();
     document.head.appendChild(e);
     if (location.pathname.indexOf("inventory.php") >= 0) {
         var inp = "";
@@ -81,10 +80,10 @@
     if ((location.pathname.indexOf("war.php") >= 0)||(location.pathname.indexOf("warlog.php") >= 0)) {
         let timer = setInterval(check_start, 10);
         function check_start() {
-            //if (unsafeWindow.gpause == false) {
-            //    unsafeWindow.gpause = true;
-            //    clearInterval(timer);
-            //}
+            if (unsafeWindow.gpause == false) {
+                unsafeWindow.gpause = true;
+                clearInterval(timer);
+            }
         }
         var warid = location.search.match(/warid=([0-9]+)/)[1];
         var key = "";
