@@ -3,7 +3,7 @@
 // @author         Neleus
 // @namespace      Neleus
 // @description    Исправленный и рабочий battleHelper
-// @version        0.41
+// @version        0.42
 // @include        /^https{0,1}:\/\/((www|qrator|my)\.(heroeswm|lordswm)\.(ru|com)|178\.248\.235\.15)\/(war|warlog|leader_guild|leader_army|inventory).php(?!.?setkamarmy)/
 // @grant          GM_xmlhttpRequest
 // @grant          unsafeWindow
@@ -7544,8 +7544,6 @@
           let elem = []
           elem[0] = document.querySelector("#chat_format")
           elem[1] = document.querySelector("#chat_format_classic")
-          //elem[0].innerHTML = info + elem[0].innerHTML;
-          //elem[1].innerHTML = info + elem[1].innerHTML;
           elem[0].innerHTML =
             "<div class = 'atb-info' style = 'display:none'>" +
             info +
