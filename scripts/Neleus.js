@@ -7544,6 +7544,8 @@
           let elem = []
           elem[0] = document.querySelector("#chat_format")
           elem[1] = document.querySelector("#chat_format_classic")
+          //elem[0].innerHTML = info + elem[0].innerHTML;
+          //elem[1].innerHTML = info + elem[1].innerHTML;
           elem[0].innerHTML =
             "<div class = 'atb-info' style = 'display:none'>" +
             info +
