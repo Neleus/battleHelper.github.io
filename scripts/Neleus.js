@@ -3,13 +3,13 @@
 // @author         Neleus
 // @namespace      Neleus
 // @description    Исправленный и рабочий battleHelper
-// @version        0.42
+// @version        0.44
 // @include        /^https{0,1}:\/\/((www|qrator|my)\.(heroeswm|lordswm)\.(ru|com)|178\.248\.235\.15)\/(war|warlog|leader_guild|leader_army|inventory).php(?!.?setkamarmy)/
 // @grant          GM_xmlhttpRequest
 // @grant          unsafeWindow
 // @license        GNU GPLv3
 // ==/UserScript==
- 
+
 ;(function () {
   if (location.pathname.indexOf("leader_guild.php") >= 0) {
     var turnId = {
@@ -604,7 +604,7 @@
           was_spell = 0
         lastpage = page
         if (iszak != 1) zakarrow = false
- 
+
         function proccedinbook(so, powered, showed_cnt) {
           if (
             so == "zakarrow" &&
@@ -1054,9 +1054,9 @@
           }
         }
       }
- 
+
       //
- 
+
       unsafeWindow.hwm_set = {
         miniSpells: false,
         atbStartDisplay: false,
@@ -1100,7 +1100,7 @@
       unsafeWindow.chatMode = function () {
         return chat.className.substring(chat.className.length - 1)
       }
- 
+
       let divs = [],
         divc = [],
         divt = []
@@ -1117,16 +1117,16 @@
         divs[i] = document.createElement("div")
         divs[i].setAttribute("id", "hp" + i)
         divs[i].classList.add("hp")
- 
+
         divc[i] = document.createElement("div")
         divc[i].style.backgroundColor = backgroundColors[i]
         divc[i].setAttribute("id", "hp" + i + "c")
         divc[i].classList.add("hpc")
- 
+
         divt[i] = document.createElement("div")
         divt[i].setAttribute("id", "hp" + i + "t")
         divt[i].classList.add("hpt")
- 
+
         if (i > 1) {
           divs[i].style.marginTop = "3px"
         }
@@ -1186,7 +1186,7 @@
         ".hpt {width:100%; height:100%; text-align:center; line-height:15px; font-size:13px; font-weight:bold; color:#fff; position:absolute; z-index:1;}"
       damageTableStyle.innerHTML +=
         ".hpc {width:100%; height:100%; border-radius: 5px; position:absolute;}"
- 
+
       document.head.appendChild(damageTableStyle)
       effectsDisplay = document.createElement("div")
       effectsDisplay.setAttribute("id", "effectsDisplay")
@@ -1253,16 +1253,13 @@
             stage.pole.obj[k].nowhealth
         }
         for (let i = 1; i <= ch; i++) {
-          document.getElementById("hp" + i + "t").innerHTML =
-            "" +
-            nHP[i - 1] +
-            "/" +
-            sHP[i - 1] +
-            " (" +
-            Math.round((nHP[i - 1] / sHP[i - 1]) * 100) +
-            "%)"
-          document.getElementById("hp" + i + "c").style.width =
-            "" + Math.round((nHP[i - 1] / sHP[i - 1]) * 100) + "%"
+          let percentage = (nHP[i - 1] / sHP[i - 1]) * 100
+          document.getElementById("hp" + i + "t").innerHTML = `${nHP[i - 1]}/${
+            sHP[i - 1]
+          } (${percentage.toFixed(2)}%)`
+          document.getElementById(
+            "hp" + i + "c"
+          ).style.width = `${percentage.toFixed(2)}%`
         }
       }
       unsafeWindow.infoBlock = function (i = 0) {
@@ -1699,7 +1696,7 @@
         if (cre[yesCount] === undefined) {
           cre[yesCount] = 0
         }
- 
+
         if (cre["checkMrl"] !== undefined && cre["checkMrl"] == 1) {
           if (magic[i]["mrl"] === 0) {
             stage.pole.clearPar(i, "morale")
@@ -2254,7 +2251,7 @@
         }
         xr_last = xr
         yr_last = yr
- 
+
         xr_z = scr_xmouse
         yr_z = scr_ymouse
         if (reset) {
@@ -2293,7 +2290,7 @@
         if (!inserted && inssubmit) {
           return 0
         }
- 
+
         if (!inserted && !inssubmit) {
           if (reset) {
             xr = -5
@@ -5582,7 +5579,10 @@
           return 0
         }
         if (soundeff == -1 && btype != 86 && btype != 87 && btype != 82) {
-          if (typeof unsafeWindow.cordova_client != "undefined" && cordova_client) {
+          if (
+            typeof unsafeWindow.cordova_client != "undefined" &&
+            cordova_client
+          ) {
             soundeff = 1
           } else {
             show_sound_dialog()
@@ -5803,7 +5803,7 @@
           }
           command_copy = command_copy.substr(19)
         }
- 
+
         for (i in this.obj) {
           if (
             this.obj[phm[i]] !== undefined &&
@@ -5887,7 +5887,10 @@
         }
         stage[war_scr].convertfromselfmagic(i, 1)
       }
-      stage.pole.showmagicinfo = unsafeWindow.showmagicinfo = function (i, t = 0) {
+      stage.pole.showmagicinfo = unsafeWindow.showmagicinfo = function (
+        i,
+        t = 0
+      ) {
         var k = 0,
           bit = 0
         mcount = -1
@@ -6504,7 +6507,7 @@
           k = tointeger(command_new.substr(1, 3))
           current = k
         }
- 
+
         if (
           (!someactive || cmd == "P") &&
           (!spellactive || flamewave_active) &&
@@ -6528,7 +6531,7 @@
               }
             }
           }
- 
+
           if (cmd == "r") {
             if (lastRaidsCount != stage.pole.obj[current]["nownumber"]) {
               raidsCurrentWave++
@@ -7400,7 +7403,7 @@
       stage.pole.getmorale = stage.pole.getMoraleN
     }
   }
- 
+
   if (location.pathname.indexOf("inventory.php") >= 0) {
     var inp = ""
     var bt = ""
@@ -7453,7 +7456,7 @@
     }
     let sDiv = document.createElement("div")
     let sImg = document.createElement("img")
-    sImg.setAttribute("src", dailyURL + "i/search_logo.png")
+    sImg.setAttribute("src", "https://daily.heroeswm.ru/i/search_logo.png")
     sImg.setAttribute("class", "inv_100mwmh")
     sDiv.append(sImg)
     sDiv.classList.add("divs_inline_right_24")
@@ -7475,10 +7478,10 @@
   ) {
     let timer = setInterval(check_start, 10)
     function check_start() {
-      //if (unsafeWindow.gpause == false) {
-      //    unsafeWindow.gpause = true;
-      //    clearInterval(timer);
-      //}
+      if (unsafeWindow.gpause == false) {
+        unsafeWindow.gpause = true
+        clearInterval(timer)
+      }
     }
     var warid = location.search.match(/warid=([0-9]+)/)[1]
     var key = ""
