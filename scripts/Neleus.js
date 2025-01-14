@@ -7485,7 +7485,10 @@
     }
     var warid = location.search.match(/warid=([0-9]+)/)[1]
     var key = ""
-    if (location.search.match(/show_for_all=([0-9a-zA-Z]+)/)) {
+    if (
+      location.search.match(/show_for_all=([0-9a-zA-Z]+)/) ||
+      location.search.match(/show=([0-9a-zA-Z]+)/)
+    ) {
       key = location.search.match(/show_for_all=([0-9a-zA-Z]+)/)[1]
     }
     var att = 0
