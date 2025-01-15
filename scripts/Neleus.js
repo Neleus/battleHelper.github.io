@@ -3,7 +3,7 @@
 // @author         Neleus
 // @namespace      Neleus
 // @description    Исправленный и рабочий battleHelper
-// @version        0.45
+// @version        0.46
 // @include        /^https{0,1}:\/\/((www|qrator|my)\.(heroeswm|lordswm)\.(ru|com)|178\.248\.235\.15)\/(war|warlog|leader_guild|leader_army|inventory).php(?!.?setkamarmy)/
 // @grant          GM_xmlhttpRequest
 // @grant          unsafeWindow
@@ -7483,16 +7483,13 @@
         clearInterval(timer)
       }
     }
-    var warid = location.search.match(/warid=([0-9]+)/)[1]
-    var key = ""
-    if (
-      location.search.match(/show_for_all=([0-9a-zA-Z]+)/) ||
-      location.search.match(/show=([0-9a-zA-Z]+)/)
-    ) {
-      key = location.search.match(/show_for_all=([0-9a-zA-Z]+)/)[1]
-    }
+    var warid = location.search.match(/warid=([0-9]+)/)?.[1]
+    var key =
+      location.search.match(/show_for_all=([0-9a-zA-Z]+)/)?.[1] ||
+      location.search.match(/show=([0-9a-zA-Z]+)/)?.[1] ||
+      ""
     var att = 0
-    var unit = ["", "", "", "", "", "", "", ""]
+    var unit = Array(8).fill("")
     getAtb(0)
     document.getElementById("confirm_ins").addEventListener(
       "click",
